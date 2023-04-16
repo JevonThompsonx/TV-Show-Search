@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swapi star wars test</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="body-wrapper">
+    <h1 id="Tv-heading">TV Show search </h1>
+
+    <p id="description">Input a search and the result will be returned with a picture, image and genres of the searched show</p>
+    <p id="infoBox">For more information visit <span><a id= 'repoLink' href="github.com/">This project's github repo</a></span></p>
+
+    <form action="">
+        <input aria-label = 'tv show search bar' id='tv-search' type="text" name="search bar" placeholder = 'Tv show title'>
+        <button id ='show-button' aria-label = 'tv show button' type="submit">Submit</button>
+        <ul id='show-list'></ul>
+    </form>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="java.js"></script>
+</body>
+
+</html>
