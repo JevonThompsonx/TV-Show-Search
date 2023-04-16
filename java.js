@@ -64,25 +64,28 @@ const showListSection = async () => {
     showList.append(newList);
 }   
 const searchError = () => {
-    const errorItem = document.createElement('li')
+    clearSearch();
+    const errorItem = document.createElement('li');
     const errorHeader = document.createElement('h3');
     errorHeader.style.textContent = 'Invalid search. Please try again';
     errorItem.append(errorHeader);
     showList.append(errorItem);
 }
-// const clearSearch = () => {
-//     try {
-
-//     }
-// }
+const clearSearch = () => {
+    if (!!showList.firstChild) {
+    try {
+    setTimeout(()=> {
+    showList.removeChild(showList.firstChild)
+    },1)
+    }
+    catch {}
+    }
+    else {}
+}
 showButton.addEventListener('click', (event) => {
     event.preventDefault();
+    clearSearch();
+    setTimeout(() => {
     showListSection();
+    }, 1);
 })
-
-//goal: Make it so that with every submit, the search bar result is searched through the tv maze API and results are returned
-//goal ACHIEVED YESSSIRR
-//LESSON: always use await 
-//biggest problems: 
-//                  Nesting lists
-//                  Not awaiting functions that pull from an API (lines 89-91)
