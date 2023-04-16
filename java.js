@@ -83,10 +83,17 @@ const clearSearch = () => {
     }
     else {}
 }
+
+const clearSearchInput = ()=> {
+    showSearchBar.value = ''
+}
 showButton.addEventListener('click', (event) => {
     event.preventDefault();
     clearSearch();
     setTimeout(() => {
     showListSection();
     }, 500);
+    setTimeout(()=>{
+    clearSearchInput();
+    },600)
 })
