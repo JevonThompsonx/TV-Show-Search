@@ -7,7 +7,7 @@ const showData = async () => {
         const searchBarData = showSearchBar.value
         const rawData = await axios.get(`https://api.tvmaze.com/search/shows?q=${searchBarData}`);
         if (rawData === '') {
-            errorHeader();
+            searchError();
         }
         else  {
         return rawData.data
@@ -67,7 +67,8 @@ const searchError = () => {
     clearSearch();
     const errorItem = document.createElement('li');
     const errorHeader = document.createElement('h3');
-    errorHeader.style.textContent = 'Invalid search. Please try again';
+    errorHeader.textContent = 'Invalid search. Please try again';
+    errorHeader.style.marginTop = '2vh'
     errorItem.append(errorHeader);
     showList.append(errorItem);
 }
@@ -76,7 +77,7 @@ const clearSearch = () => {
     try {
     setTimeout(()=> {
     showList.removeChild(showList.firstChild)
-    },1)
+    },500)
     }
     catch {}
     }
@@ -87,5 +88,5 @@ showButton.addEventListener('click', (event) => {
     clearSearch();
     setTimeout(() => {
     showListSection();
-    }, 1);
+    }, 500);
 })

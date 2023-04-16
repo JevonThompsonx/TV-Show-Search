@@ -149,7 +149,7 @@ body {
 	width: 100vw;
 }
 .body-wrapper {
-	padding-block: 5%;
+	padding-block: 50px;
 	height: 100%;
 	width: 100%;
 	text-align: center;
