@@ -6,26 +6,23 @@ const showData = async () => {
     try {
         const searchBarData = showSearchBar.value
         const rawData = await axios.get(`https://api.tvmaze.com/search/shows?q=${searchBarData}`);
-        if (rawData === '') {
-            searchError();
-        }
-        else  {
         return rawData.data
-        }
     } catch (err) {
         console.log(err);
     }
 }
 
-
 const showNameFunc = async () => {
+    try {
     const rawData = await showData()
     const showName = rawData[0].show.name
     const showListItem = document.createElement('li');
     showListItem.textContent = showName
     showListItem.style.fontSize = '30px'
     showListItem.style.fontWeight = 'bold'
-    return showListItem
+    return showListItem}
+    catch {searchError()}
+
 }
 const showImageFunc = async () => {
     const rawData = await showData()
@@ -43,10 +40,15 @@ const showGenreFunc = async () => {
     const showGenres = rawData[0].show.genres
     const genreList = document.createElement('li');
     const genreSubList = document.createElement('ul');
+    const genreTitle = document.createElement('li');
+    genreTitle.textContent = 'Genres:';
+    genreTitle.style.fontWeight = 'bold';
+    genreList.append(genreTitle)
     for (i = 0; i < showGenres.length; i++) {
         const genreListItem = document.createElement('li');
         genreListItem.textContent = showGenres[i];
         genreSubList.append(genreListItem);
+        genreListItem.style.marginBlock = '10px';
     }
     genreList.append(genreSubList)
     return genreList
@@ -66,10 +68,10 @@ const showListSection = async () => {
 const searchError = () => {
     clearSearch();
     const errorItem = document.createElement('li');
-    const errorHeader = document.createElement('h3');
-    errorHeader.textContent = 'Invalid search. Please try again';
-    errorHeader.style.marginTop = '2vh'
-    errorItem.append(errorHeader);
+    errorItem.textContent = 'Invalid search. Please try again';
+    errorItem.style.marginTop = '2vh';
+    errorItem.style.fontSize ='2em';
+    errorItem.style.color = 'red';
     showList.append(errorItem);
 }
 const clearSearch = () => {
@@ -95,5 +97,5 @@ showButton.addEventListener('click', (event) => {
     }, 500);
     setTimeout(()=>{
     clearSearchInput();
-    },600)
+    },1000)
 })
